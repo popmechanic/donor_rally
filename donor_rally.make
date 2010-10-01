@@ -109,9 +109,9 @@ projects[simple_payments][subdir] = "contrib"
 projects[simple_payments][type] = "module"
 projects[simple_payments][download][type] = "cvs"
 projects[simple_payments][download][module] = "contributions/modules/simple_payments"
-projects[simple_payments][download][revision] = "DRUPAL-6--1:2010-08-09"
-; http://drupal.org/node/839952
-projects[simple_payments][patch][] = "http://drupal.org/files/issues/simple_payments.payer_email.patch"
+projects[simple_payments][download][revision] = ":2010-08-08"
+; http://drupal.org/node/839952#comment-3515550
+projects[simple_payments][patch][] = "http://drupal.org/files/issues/simple_payments.839952.patch"
 ; http://drupal.org/node/869142#comment-3267326
 projects[simple_payments][patch][] = "http://drupal.org/files/issues/simple_payments-869142-views-support.patch"
 
@@ -133,11 +133,9 @@ projects[zen][version] = "2.0"
 ; http://drupal.org/node/634552#comment-3244662
 projects[zen][patch][] = "http://drupal.org/files/issues/zen-634552_0.patch"
 
-projects[tao][location] = "http://code.developmentseed.org/fserver"
 projects[tao][version] = "3.1"
 
-projects[rubik][location] = "http://code.developmentseed.org/fserver"
-projects[rubik][version] = "3.0-beta1"
+projects[rubik][version] = "3.0-beta2"
 
 projects[doune][type] = "theme"
 projects[doune][download][type] = "git"
