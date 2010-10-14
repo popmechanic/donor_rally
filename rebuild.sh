@@ -38,11 +38,9 @@ projects[donor_rally][download][url] = "git@github.com:opensourcery/DonorRally.g
 EOF
 )
     
-      TAG="HEAD"
-      VERSION="head"
       MAKE="$MAKE $TAG\n"
-      NAME=`echo "donor_rally-$VERSION" | tr '[:upper:]' '[:lower:]'`
-      echo -e $MAKE | drush make --yes - $NAME
+      NAME=`echo "donor_rally | tr '[:upper:]' '[:lower:]'`
+      echo -e $MAKE | drush make --debug --yes - $NAME
       zip -r $NAME.zip $NAME
       tar -zcf $NAME.tar.gz $NAME
   else
