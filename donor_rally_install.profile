@@ -226,7 +226,6 @@ function donor_rally_install_profile_tasks(&$task, $url) {
 
   if ($task == 'donor-rally-configure-goal') {
     $output = drupal_get_form('donor_rally_install_fundraising_goal');
-
     if (!variable_get('donor_rally_install_configured', FALSE)) {
       return $output;
     }
@@ -556,6 +555,7 @@ function donor_rally_install_payment_gateway_form_submit($form, &$form_state) {
  * Sitewide fundraising goal.
  */
 function donor_rally_install_fundraising_goal($form_state) {
+  $form['#redirect'] = FALSE;
   $form['donor_rally_goal'] = array(
     '#type' => 'textfield',
     '#title' => st('Total Fundraising Goal'),
