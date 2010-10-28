@@ -1,9 +1,7 @@
 .DS_Store
 .DS\_Store
 *.sw?
-Makefile
 .vimrc
 *~
-sites/default/settings.php
-sites/default/files
-
+modules
+themes
