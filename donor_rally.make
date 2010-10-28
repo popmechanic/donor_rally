@@ -8,6 +8,11 @@ includes[drupal-org] = "drupal-org.make"
 ; Keep only patches and external projects in here until such a time
 ; that drupal.org supports these.
 
+; Donor Rally features
+projects[donor_rally_features][type] = "module"
+projects[donor_rally_features][download][type] = "git"
+projects[donor_rally_features][download][url] = "git@github.com:opensourcery/donor_rally_features.git"
+
 ; Contrib
 projects[salsa_api][subdir] = "contrib"
 projects[salsa_api][type] = "module"
@@ -58,11 +63,11 @@ projects[zen][patch][] = "http://drupal.org/files/issues/zen-634552_0.patch"
 
 projects[doune][type] = "theme"
 projects[doune][download][type] = "git"
-projects[doune][download][url] = "git://github.com/opensourcery/doune.git"
+projects[doune][download][url] = "git@github.com:opensourcery/doune.git"
 
 projects[huddle][type] = "theme"
 projects[huddle][download][type] = "git"
-projects[huddle][download][url] = "git://github.com/opensourcery/huddle.git"
+projects[huddle][download][url] = "git@github.com:opensourcery/huddle.git"
 
 ; Libraries
 libraries[jquery_ui][download][type] = "get"
