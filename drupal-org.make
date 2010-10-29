@@ -25,6 +25,9 @@ projects[content_profile][version] = "1.0"
 projects[context][subdir] = "contrib"
 projects[context][version] = "3.0"
 
+projects[contextual][subdir] = "contrib"
+projects[contextual][version] = "1.0"
+
 projects[ctools][subdir] = "contrib"
 projects[ctools][version] = "1.7"
 

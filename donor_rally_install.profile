@@ -18,6 +18,7 @@ function donor_rally_install_profile_modules() {
     'better_formats',
     'ctools',
     'content',
+    'contextual',
     'features',
     'less',
     'pathauto',
@@ -149,6 +150,7 @@ function donor_rally_install_profile_tasks(&$task, $url) {
 
     // Admin theme.
     variable_set('admin_theme', 'rubik');
+    variable_set('views_no_hover_links', TRUE);
 
     // Default footer.
     variable_set('site_footer', st('Donor Rally&trade; &mdash; built by <a href="!url">OpenSourcery</a>', array('!url' => url('http://www.opensourcery.com'))));
