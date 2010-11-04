@@ -1,0 +1,14 @@
+How to install Donor Rally
+==========================
+
+1. Install the latest version of Drupal core 6.x into your web server's document root, as usual. We'll call Drupal's path $DRUPAL.
+2. Move this entire DonorRally directory into $DRUPAL/profiles/.
+3. Rename DonorRally to donor_rally_install. You should be able to access this file at $DRUPAL/profiles/donor_rally_install/INSTALL.txt.
+
+Run Drupal's installer as usual and follow along with the additional configuration options the Donor Rally installer will ask you about:
+
+1. Payment gateway. Choose PayPal. The Salsa/Democracy In Action gateway is currently not quite operational.
+2. PayPal account email. Type in the email address of the PayPal account that should receive donated funds.
+3. Total Fundraising Goal: Total goal (in dollars) for your fundraising campaign. This value is used to show an overall campaign fundraising progress thermometer on your site's home page. Assuming you will have multiple teams engaged in the campaign, this would be the goal for all teams' donations combined. For instance, if each team's was in the $1-10,000 range and there will be about a dozen teams, you might choose a campaign goal of $50,000. You can change this later.
+
+Now you should see the Drupal installer's final "installation complete" with a link to your home page. We hope you enjoy Donor Rally!
