@@ -37,7 +37,7 @@ projects[views_or][subdir] = "contrib"
 projects[views_or][type] = "module"
 projects[views_or][download][type] = "cvs"
 projects[views_or][download][module] = "contributions/modules/views_or"
-projects[views_or][download][revision] = "DRUPAL-6--2:2009-08-12"
+projects[views_or][download][revision] = ":2009-08-12"
 
 ; Patched projects
 
