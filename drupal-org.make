@@ -37,6 +37,9 @@ projects[features][version] = "1.0"
 projects[filefield][subdir] = "contrib"
 projects[filefield][version] = "3.7"
 
+projects[filefield_paths][subdir] = "contrib"
+projects[filefield_paths][version] = "1.4"
+
 projects[forward][subdir] = "contrib"
 projects[forward][version] = "1.16"
 

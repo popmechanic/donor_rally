@@ -382,6 +382,7 @@ function  _donor_rally_install_modules() {
     'donor_rally_io',
     'fieldgroup',
     'filefield',
+    'filefield_paths',
     'imageapi',
     'imageapi_gd',
     'imagecache',
