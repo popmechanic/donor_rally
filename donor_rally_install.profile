@@ -403,7 +403,7 @@ function  _donor_rally_install_modules() {
     'shorturl',
 
     // Donor Rally features.
-    'donor_rally_team', 'donor_rally_team_blog', 'donor_rally_social',
+    'dr_team', 'dr_blog', 'dr_social',
   );
 
   // Enable selected Donor Rally payment gateway.
