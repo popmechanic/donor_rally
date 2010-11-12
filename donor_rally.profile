@@ -1,5 +1,5 @@
 <?php
-// $Id: donor_rally_install.profile 880 2009-09-04 00:10:54Z jhedstrom $
+// $Id: donor_rally.profile 880 2009-09-04 00:10:54Z jhedstrom $
 
 /**
  * Return an array of the modules to be enabled when this profile is installed.
@@ -7,7 +7,7 @@
  * @return array
  *   An array of modules to enable.
  */
-function donor_rally_install_profile_modules() {
+function donor_rally_profile_modules() {
   $modules = array(
     // Drupal core modules.
     'help', 'menu', 'taxonomy', 'dblog', 'path',
@@ -40,7 +40,7 @@ function donor_rally_install_profile_modules() {
  *   and optional 'language' to override the language selection for
  *   language-specific profiles.
  */
-function donor_rally_install_profile_details() {
+function donor_rally_profile_details() {
   return array(
     'name' => 'Donor Rally',
     'description' => st('Select this profile to enable a Donor Rally installation.'),
@@ -56,7 +56,7 @@ function donor_rally_install_profile_details() {
  *   while the values will be displayed to the user in the installer
  *   task list.
  */
-function donor_rally_install_profile_task_list() {
+function donor_rally_profile_task_list() {
   $tasks['donor-rally-payment-gateway'] = st('Select Donor Rally payment gateway');
   $tasks['donor-rally-modules-batch'] = st('Install Donor Rally modules');
   $tasks['donor-rally-configure'] = st('Configure Donor Rally');
@@ -115,7 +115,7 @@ function donor_rally_install_profile_task_list() {
  *   An optional HTML string to display to the user. Only used if you
  *   modify the $task, otherwise discarded.
  */
-function donor_rally_install_profile_tasks(&$task, $url) {
+function donor_rally_profile_tasks(&$task, $url) {
   if ($task == 'profile') {
     // Insert default user-defined node types into the database. For a complete
     // list of available node type attributes, refer to the node type API
@@ -164,22 +164,22 @@ function donor_rally_install_profile_tasks(&$task, $url) {
     db_query("UPDATE {blocks} SET status = 0, region = ''");
 
     // Create roles.
-    _donor_rally_install_user_roles();
+    _donor_rally_user_roles();
     // Assign sensible input filter defaults to roles.
-    _donor_rally_install_better_formats();
+    _donor_rally_better_formats();
     // Initial permissions.
-    _donor_rally_install_set_permissions();
+    _donor_rally_set_permissions();
     // Pathauto defaults.
-    _donor_rally_install_pathauto();
+    _donor_rally_pathauto();
     // Core configuration and tweaks.
-    _donor_rally_install_core();
+    _donor_rally_core();
 
     $task = 'donor-rally-payment-gateway';
  }
 
   if ($task == 'donor-rally-payment-gateway') {
-    $output = drupal_get_form('donor_rally_install_payment_gateway_form', $url); 
-    if (!variable_get('donor_rally_payment_gateway', FALSE)) {
+    $output = drupal_get_form('donor_rally_payment_gateway_form', $url); 
+    if (!variable_get('dr_base_payment_gateway', FALSE)) {
       drupal_set_title(st('Select Donor Rally Payment Gateway'));
       return $output;
     }
@@ -195,14 +195,14 @@ function donor_rally_install_profile_tasks(&$task, $url) {
   }
 
   if ($task == 'donor-rally-modules') {
-    $modules = _donor_rally_install_modules();
+    $modules = _donor_rally_modules();
     $files = module_rebuild_cache();
     // Create batch
     foreach ($modules as $module) {
       $batch['operations'][] = array('_install_module_batch', array($module, $files[$module]->info['name']));
     }
-    $batch['operations'][] = array('_donor_rally_install_clean', array());
-    $batch['finished'] = '_donor_rally_install_profile_batch_finished';
+    $batch['operations'][] = array('_donor_rally_clean', array());
+    $batch['finished'] = '_donor_rally_profile_batch_finished';
     $batch['title'] = st('Installing @drupal', array('@drupal' => drupal_install_profile_name()));
     $batch['error_message'] = st('The installation has encountered an error.');
 
@@ -215,25 +215,25 @@ function donor_rally_install_profile_tasks(&$task, $url) {
   }
 
   if ($task == 'donor-rally-configure') {
-    $output = drupal_get_form('donor_rally_install_configure_form', $url);
+    $output = drupal_get_form('donor_rally_configure_form', $url);
 
-    if (!variable_get('donor_rally_install_configured', FALSE)) {
+    if (!variable_get('donor_rally_configured', FALSE)) {
       return $output;
     }
     else {
-      variable_set('donor_rally_install_configured', FALSE);
+      variable_set('donor_rally_configured', FALSE);
       $task = 'donor-rally-configure-goal';
     }
   }
 
   if ($task == 'donor-rally-configure-goal') {
-    $output = drupal_get_form('donor_rally_install_fundraising_goal');
-    if (!variable_get('donor_rally_install_configured', FALSE)) {
+    $output = drupal_get_form('donor_rally_fundraising_goal');
+    if (!variable_get('donor_rally_configured', FALSE)) {
       return $output;
     }
     else {
       // Clean-up install profile variables.
-      variable_del('donor_rally_install_configured');
+      variable_del('donor_rally_configured');
       variable_set('install_task', 'profile-finished');
       $task = 'profile-finished';
     }
@@ -246,7 +246,7 @@ function donor_rally_install_profile_tasks(&$task, $url) {
  * Allows the profile to alter the site-configuration form. This is
  * called through custom invocation, so $form_state is not populated.
  */
-function donor_rally_install_form_alter(&$form, $form_state, $form_id) {
+function donor_rally_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'install_configure') {
     // Set default for site name field.
     $form['site_information']['site_name']['#default_value'] = $_SERVER['SERVER_NAME'];
@@ -256,7 +256,7 @@ function donor_rally_install_form_alter(&$form, $form_state, $form_id) {
 /**
  * Creates Team Leader and Administrator roles.
  */
-function _donor_rally_install_user_roles() {
+function _donor_rally_user_roles() {
   foreach (array('campaign coordinator', 'administrator') as $role) {
     if (!db_result(db_query("SELECT rid FROM {role} WHERE name = '%s'", array(':role_name' => $role)))) {
       db_query("INSERT INTO {role} (name) VALUES ('%s')", $role);
@@ -270,7 +270,7 @@ function _donor_rally_install_user_roles() {
 /**
  * Set campaign coordinator and administrator default input format to full HTML.
  */
-function _donor_rally_install_better_formats() {
+function _donor_rally_better_formats() {
   $roles = array();
   foreach (user_roles() as $rid => $name) {
     if (in_array($name, array('campaign coordinator', 'administrator'))) {
@@ -294,7 +294,7 @@ function _donor_rally_install_better_formats() {
 /**
  * Set some sensible permissions.
  */
-function _donor_rally_install_set_permissions() {
+function _donor_rally_set_permissions() {
   $roles = user_roles();
   $admin_rid = array_search('administrator', $roles);
   $admin_user_perms = array(
@@ -335,7 +335,7 @@ function _donor_rally_install_set_permissions() {
 /**
  * Initial settings for pathauto and path redirect.
  */
-function _donor_rally_install_pathauto() {
+function _donor_rally_pathauto() {
   // Get rid of wonky content/foo pattern.
   // The rationale is that it's easier to bulk-update pathauto aliases
   // than it is to remove unwanted ones.
@@ -350,7 +350,7 @@ function _donor_rally_install_pathauto() {
 /**
  * Core customization.
  */
-function _donor_rally_install_core() {
+function _donor_rally_core() {
   // Change default anonymous to "Visitor".
   variable_set('anonymous', 'Visitor');
   
@@ -370,7 +370,7 @@ function _donor_rally_install_core() {
 /**
  * Additional modules to enable.
  */
-function  _donor_rally_install_modules() {
+function  _donor_rally_modules() {
   $modules = array(
     // Modules required by the features below.
     'boxes',
@@ -378,8 +378,7 @@ function  _donor_rally_install_modules() {
     'content_profile',
     'content_profile_registration',
     'context',
-    'donor_rally',
-    'donor_rally_io',
+    'dr_base',
     'fieldgroup',
     'filefield',
     'filefield_paths',
@@ -408,19 +407,19 @@ function  _donor_rally_install_modules() {
   );
 
   // Enable selected Donor Rally payment gateway.
-  switch (variable_get('donor_rally_payment_gateway', '')) {
-    case 'donor_rally_paypal':
+  switch (variable_get('dr_base_payment_gateway', '')) {
+    case 'dr_paypal':
       $modules = array_merge($modules, array(
         'simple_payments',
         'simple_payments_paypal',
-        'donor_rally_paypal',
+        'dr_paypal',
       ));
       break;
 
-    case 'donor_rally_salsa':
+    case 'dr_salsa':
       $modules = array_merge($modules, array(
         'salsa_api',
-        'donor_rally_salsa',
+        'dr_salsa',
       ));
       break;
   }
@@ -431,14 +430,14 @@ function  _donor_rally_install_modules() {
 /**
  * Finished callback.
  */
-function _donor_rally_install_profile_batch_finished($success, $results) {
+function _donor_rally_profile_batch_finished($success, $results) {
   variable_set('install_task', 'donor-rally-configure');
 }
 
 /**
  * Clear and rebuild caches.
  */
-function _donor_rally_install_clean() {
+function _donor_rally_clean() {
   // Remove 'profile' node type added by content_profile.
   node_type_delete('profile');
 
@@ -462,12 +461,12 @@ function _donor_rally_install_clean() {
 /**
  * Configuration form.
  */
-function donor_rally_install_configure_form(&$form_state, $url) {
+function donor_rally_configure_form(&$form_state, $url) {
   $form['#action'] = $url;
   $form['#redirect'] = FALSE;
 
-  switch (variable_get('donor_rally_payment_gateway', FALSE)) {
-    case 'donor_rally_paypal':
+  switch (variable_get('dr_base_payment_gateway', FALSE)) {
+    case 'dr_paypal':
       drupal_set_title(st('Configure PayPal account'));
       $form['simple_payments_paypal_account'] = array(
         '#type' => 'textfield',
@@ -484,7 +483,7 @@ function donor_rally_install_configure_form(&$form_state, $url) {
 
       break;
 
-    case 'donor_rally_salsa':
+    case 'dr_salsa':
       // @TODO
       drupal_set_title(st('Configure Salsa'));
       $form['#value'] = st('Not yet supported during install time.');
@@ -496,37 +495,37 @@ function donor_rally_install_configure_form(&$form_state, $url) {
 /**
  * Submit handler for the configuration form.
  */
-function donor_rally_install_configure_form_submit($form, &$form_state) {
-  switch (variable_get('donor_rally_payment_gateway', FALSE)) {
-    case 'donor_rally_paypal':
+function donor_rally_configure_form_submit($form, &$form_state) {
+  switch (variable_get('dr_base_payment_gateway', FALSE)) {
+    case 'dr_paypal':
       variable_set('simple_payments_paypal_account', $form_state['values']['simple_payments_paypal_account']);
-      variable_set('donor_rally_install_configured', TRUE);
+      variable_set('donor_rally_configured', TRUE);
       break;
 
-    case 'donor_rally_salsa':
+    case 'dr_salsa':
       // @TODO
-      variable_set('donor_rally_install_configured', TRUE);
+      variable_set('donor_rally_configured', TRUE);
       break;
 
     default:
       // No gateway selected, move on.
-      variable_set('donor_rally_install_configured', TRUE);
+      variable_set('donor_rally_configured', TRUE);
   }
 }
 
 /**
  * Select the payment gateway.
  */
-function donor_rally_install_payment_gateway_form(&$form_state, $url) {
+function donor_rally_payment_gateway_form(&$form_state, $url) {
   $form['#action'] = $url;
   $form['#redirect'] = FALSE;
 
-  $form['donor_rally_payment_gateway'] = array(
+  $form['dr_base_payment_gateway'] = array(
     '#type' => 'select',
     '#title' => st('Payment Gateway'),
     '#description' => st('Select the payment gateway to use for donations and reporting.'),
     '#required' => TRUE,
-    '#options' => _donor_rally_install_get_payment_gateways(),
+    '#options' => _donor_rally_get_payment_gateways(),
   );
 
   $form['submit'] = array(
@@ -540,31 +539,31 @@ function donor_rally_install_payment_gateway_form(&$form_state, $url) {
 /**
  * Validate form.
  */
-function donor_rally_install_payment_gateway_form_validate($form, &$form_state) {
-  if (!in_array($form_state['values']['donor_rally_payment_gateway'], array_keys(_donor_rally_install_get_payment_gateways()))) {
-    form_set_error('donor_rally_payment_gateway', st('Invaled payment gateway: %gateway.', array('%gateway' => $form_state['values']['donor_rally_payment_gateway'])));
+function donor_rally_payment_gateway_form_validate($form, &$form_state) {
+  if (!in_array($form_state['values']['dr_base_payment_gateway'], array_keys(_donor_rally_get_payment_gateways()))) {
+    form_set_error('dr_base_payment_gateway', st('Invaled payment gateway: %gateway.', array('%gateway' => $form_state['values']['dr_base_payment_gateway'])));
   }
 }
 
 /**
  * Configuration form submit handler.
  */
-function donor_rally_install_payment_gateway_form_submit($form, &$form_state) {
-  drupal_set_message('Set Donor Rally payment gateway: %gateway', array('%gateway' => $form_state['values']['donor_rally_payment_gateway']));
-  variable_set('donor_rally_payment_gateway', $form_state['values']['donor_rally_payment_gateway']);
+function donor_rally_payment_gateway_form_submit($form, &$form_state) {
+  drupal_set_message('Set Donor Rally payment gateway: %gateway', array('%gateway' => $form_state['values']['dr_base_payment_gateway']));
+  variable_set('dr_base_payment_gateway', $form_state['values']['dr_base_payment_gateway']);
 }
 
 /**
  * Sitewide fundraising goal.
  */
-function donor_rally_install_fundraising_goal($form_state) {
+function donor_rally_fundraising_goal($form_state) {
   $form['#redirect'] = FALSE;
-  $form['donor_rally_goal'] = array(
+  $form['dr_base_goal'] = array(
     '#type' => 'textfield',
     '#title' => st('Total Fundraising Goal'),
     '#description' => t('This will be used for the total on the site-wide thermometer.'),
     '#required' => TRUE,
-    '#default_value' => variable_get('donor_rally_goal', ''),
+    '#default_value' => variable_get('dr_base_goal', ''),
   );
 
   $form['submit'] = array(
@@ -577,15 +576,15 @@ function donor_rally_install_fundraising_goal($form_state) {
 /**
  * Sitewide fundraising goal submit handler.
  */
-function donor_rally_install_fundraising_goal_submit($form, &$form_state) {
-  variable_set('donor_rally_goal', $form_state['values']['donor_rally_goal']);
-  variable_set('donor_rally_install_configured', TRUE);
+function donor_rally_fundraising_goal_submit($form, &$form_state) {
+  variable_set('dr_base_goal', $form_state['values']['dr_base_goal']);
+  variable_set('donor_rally_configured', TRUE);
 }
 
-function _donor_rally_install_get_payment_gateways() {
+function _donor_rally_get_payment_gateways() {
   return array(
-    'donor_rally_paypal' => st('PayPal'),
-    'donor_rally_salsa' => st('Salsa/Democracy in Action'),
+    'dr_paypal' => st('PayPal'),
+    'dr_salsa' => st('Salsa/Democracy in Action'),
   );
 }
 
@@ -594,6 +593,6 @@ function _donor_rally_install_get_payment_gateways() {
  */
 function system_form_install_select_profile_form_alter(&$form, $form_state) {
   foreach($form['profile'] as $key => $element) {
-    $form['profile'][$key]['#value'] = 'donor_rally_install';
+    $form['profile'][$key]['#value'] = 'donor_rally';
   }
 }
