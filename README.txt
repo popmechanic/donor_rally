@@ -14,4 +14,4 @@ To received notice about future updates, join our email list:
 http://www.opensourcery.com/donor-rally
 
 And developers can follow us on GitHub:
-http://github.com/opensourcery/DonorRally
+http://github.com/opensourcery/donor_rally
