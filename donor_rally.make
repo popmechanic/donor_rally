@@ -12,6 +12,7 @@ includes[drupal-org] = "drupal-org.make"
 projects[donor_rally_features][type] = "module"
 projects[donor_rally_features][download][type] = "git"
 projects[donor_rally_features][download][url] = "git://github.com/opensourcery/donor_rally_features.git"
+projects[donor_rally_features][download][tag] = "DRUPAL-6--1-0-ALPHA1"
 
 ; Contrib
 projects[salsa_api][subdir] = "contrib"
@@ -68,6 +69,7 @@ projects[doune][download][url] = "git://github.com/opensourcery/doune.git"
 projects[huddle][type] = "theme"
 projects[huddle][download][type] = "git"
 projects[huddle][download][url] = "git://github.com/opensourcery/huddle.git"
+projects[huddle][download][tag] = "DRUPAL-6--1-0-ALPHA1"
 
 ; Libraries
 libraries[jquery_ui][download][type] = "get"
