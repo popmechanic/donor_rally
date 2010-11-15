@@ -34,15 +34,12 @@ api = 2\n
 projects[drupal][version] = "6.19"\n
 projects[donor_rally][type] = "profile"\n
 projects[donor_rally][download][type] = "git"\n
-projects[donor_rally][download][url] = "git@github.com:opensourcery/DonorRally.git"
+projects[donor_rally][download][url] = "git://github.com/opensourcery/donor_rally.git"\n
 EOF
 )
     
-      MAKE="$MAKE $TAG\n"
-      NAME=`echo "donor_rally | tr '[:upper:]' '[:lower:]'`
-      echo -e $MAKE | drush make --debug --yes - $NAME
-      zip -r $NAME.zip $NAME
-      tar -zcf $NAME.tar.gz $NAME
+      NAME="donor_rally"
+      echo -e $MAKE | drush make --yes --tar - $NAME
   else
    echo "Invalid selection."
   fi
