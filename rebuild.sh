@@ -35,6 +35,7 @@ projects[drupal][version] = "6.19"\n
 projects[donor_rally][type] = "profile"\n
 projects[donor_rally][download][type] = "git"\n
 projects[donor_rally][download][url] = "git://github.com/opensourcery/donor_rally.git"\n
+projects[donor_rally][download][tag] = "DRUPAL-6--1-0-ALPHA1"
 EOF
 )
     
