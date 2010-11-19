@@ -591,8 +591,10 @@ function _donor_rally_get_payment_gateways() {
 /**
  * Set Donor Rally as the default install profile.
  */
-function system_form_install_select_profile_form_alter(&$form, $form_state) {
-  foreach($form['profile'] as $key => $element) {
-    $form['profile'][$key]['#value'] = 'donor_rally';
+if (!function_exists('system_form_install_select_profile_form_alter')) {
+  function system_form_install_select_profile_form_alter(&$form, $form_state) {
+    foreach($form['profile'] as $key => $element) {
+      $form['profile'][$key]['#value'] = 'donor_rally';
+    }
   }
 }
