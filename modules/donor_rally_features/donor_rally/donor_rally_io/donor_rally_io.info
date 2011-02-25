@@ -1,4 +1,3 @@
-; $Id$
 name = Donor Rally IO
 description = Import/Export utilities for Donor Rally.
 dependencies[] = donor_rally

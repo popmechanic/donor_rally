@@ -1,4 +1,3 @@
-; $Id$
 name = Donor Rally Inkind
 description = Allow inkind donations (food, volunteer hours) to be accepted towards totals.
 package = Donor Rally

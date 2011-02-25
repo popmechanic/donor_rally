@@ -1,4 +1,3 @@
-; $Id$
 name = Donor Rally Salsa API Payment Gateway
 description = Uses the Salsa API for donations and reporting
 core = 6.x

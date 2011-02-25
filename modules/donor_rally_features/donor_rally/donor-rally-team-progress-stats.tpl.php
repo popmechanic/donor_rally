@@ -1,5 +1,4 @@
 <?php
-// $Id$
 $odd = FALSE;
 ?>
 <table class="donor-rally-team-stats">

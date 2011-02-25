@@ -1,4 +1,3 @@
-; $Id$
 name = Donor Rally PayPal Gateway
 description = Use PayPal for donations
 core = 6.x
