@@ -1,0 +1,5 @@
+name = Donor Rally Inkind
+description = Allow inkind donations (food, volunteer hours) to be accepted towards totals.
+package = Donor Rally
+dependencies[] = donor_rally
+core = 6.x
