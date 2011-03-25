@@ -9,10 +9,7 @@ includes[drupal-org] = "drupal-org.make"
 ; that drupal.org supports these.
 
 ; Donor Rally features
-projects[donor_rally_features][type] = "module"
-projects[donor_rally_features][download][type] = "git"
-projects[donor_rally_features][download][url] = "git://github.com/opensourcery/donor_rally_features.git"
-projects[donor_rally_features][download][tag] = "DRUPAL-6--1-0-ALPHA1"
+projects[donor_rally_features][version] = "1.0-alpha1"
 
 ; Contrib
 projects[salsa_api][subdir] = "contrib"
