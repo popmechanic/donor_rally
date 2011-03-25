@@ -14,38 +14,29 @@ projects[donor_rally_features][version] = "1.0-alpha1"
 ; Contrib
 projects[salsa_api][subdir] = "contrib"
 projects[salsa_api][type] = "module"
-projects[salsa_api][download][type] = "cvs"
-projects[salsa_api][download][module] = "contributions/modules/salsa_api"
-projects[salsa_api][download][revision] = "DRUPAL-6--2:2009-07-22"
+projects[salsa_api][download][type] = "git"
+projects[salsa_api][download][revision] = "b21f9a3c8c32596c800349cfcf44afe58e7dff8d"
 
 projects[service_links][subdir] = "contrib"
-projects[service_links][type] = "module"
-projects[service_links][download][type] = "cvs"
-projects[service_links][download][module] = "contributions/modules/service_links"
-projects[service_links][download][revision] = "DRUPAL-6--2:2010-07-10"
+projects[service_links][version] = "2.0"
 
 ; This version works with php 5.3
 projects[vertical_tabs][subdir] = "contrib"
 projects[vertical_tabs][type] = "module"
-projects[vertical_tabs][download][type] = "cvs"
-projects[vertical_tabs][download][module] = "contributions/modules/vertical_tabs"
-projects[vertical_tabs][download][revision] = "DRUPAL-6--1:2010-02-09"
+projects[vertical_tabs][download][type] = "git"
+projects[vertical_tabs][download][revision] = "73f2434921a61d72b2ed44cd3b9687a5595729c1"
 
 projects[views_or][subdir] = "contrib"
 projects[views_or][type] = "module"
-projects[views_or][download][type] = "cvs"
-projects[views_or][download][module] = "contributions/modules/views_or"
-projects[views_or][download][revision] = ":2009-08-12"
+projects[views_or][download][type] = "git"
+projects[views_or][download][revision] = "376535184fbde0ff810a19aa48ab0369f0241bd0"
 
 ; Patched projects
 
 projects[simple_payments][subdir] = "contrib"
 projects[simple_payments][type] = "module"
-projects[simple_payments][download][type] = "cvs"
-projects[simple_payments][download][module] = "contributions/modules/simple_payments"
-projects[simple_payments][download][revision] = ":2010-08-08"
-; http://drupal.org/node/839952#comment-3515550
-projects[simple_payments][patch][] = "http://drupal.org/files/issues/simple_payments.839952.patch"
+projects[simple_payments][download][type] = "git"
+projects[simple_payments][download][revision] = "575c67774a78ea5ce67cdad1a0c39bb6b22ed050"
 ; http://drupal.org/node/869142#comment-3267326
 projects[simple_payments][patch][] = "http://drupal.org/files/issues/simple_payments-869142-views-support.patch"
 
