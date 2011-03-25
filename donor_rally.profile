@@ -146,6 +146,7 @@ function donor_rally_profile_tasks(&$task, $url) {
     // Don't display date and author information for page nodes by default.
     $theme_settings = variable_get('theme_settings', array());
     $theme_settings['toggle_node_info_page'] = FALSE;
+    $theme_settings['toggle_node_info_team'] = FALSE;
     variable_set('theme_settings', $theme_settings);
 
     // Admin theme.
