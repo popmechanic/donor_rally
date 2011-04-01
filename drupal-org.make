@@ -64,8 +64,14 @@ projects[less][version] = "2.2"
 projects[location][subdir] = "contrib"
 projects[location][version] = "3.1"
 
+projects[og][subdir] = "contrib"
+projects[og][version] = "2.1"
+
 projects[pathauto][subdir] = "contrib"
 projects[pathauto][version] = "1.4"
+
+projects[purl][subdir] = "contrib"
+projects[purl][version] = "1.0-beta13"
 
 projects[role_delegation][subdir] = "contrib"
 projects[role_delegation][version] = "1.3"
@@ -75,6 +81,9 @@ projects[shorten][version] = "1.9"
 
 projects[shorturl][subdir] = "contrib"
 projects[shorturl][version] = "1.2"
+
+projects[spaces][subdir] = "contrib"
+projects[spaces][version] = "3.1"
 
 projects[strongarm][subdir] = "contrib"
 projects[strongarm][version] = "2.0"

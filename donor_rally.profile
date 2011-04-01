@@ -391,6 +391,11 @@ function  _donor_rally_modules() {
     'jquery_ui',
     'location', // @TODO use something other than the location module.
     'number',
+    'og',
+    'og_access',
+    'purl',
+    'spaces',
+    'spaces_og',
     'text',
     'views_bonus_export',
     'views_or',
