@@ -61,9 +61,6 @@ projects[jquery_ui][version] = "1.4"
 projects[less][subdir] = "contrib"
 projects[less][version] = "2.2"
 
-projects[location][subdir] = "contrib"
-projects[location][version] = "3.1"
-
 projects[og][subdir] = "contrib"
 projects[og][version] = "2.1"
 
