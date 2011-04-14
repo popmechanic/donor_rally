@@ -409,7 +409,7 @@ function  _donor_rally_modules() {
     'shorturl',
 
     // Donor Rally features.
-    'dr_campaign', 'dr_team', 'dr_blog', 'dr_social',
+    'dr_campaign', 'dr_blog', 'dr_social',
   );
 
   // Enable selected Donor Rally payment gateway.
