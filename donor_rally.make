@@ -21,6 +21,11 @@ projects[salsa_api][download][revision] = "b21f9a3c8c32596c800349cfcf44afe58e7df
 projects[service_links][subdir] = "contrib"
 projects[service_links][version] = "2.0"
 
+projects[spaces][subdir] = "contrib"
+projects[spaces][version] = "3.1"
+; http://drupal.org/node/976324
+project[spaces][patch][] = "http://drupal.org/files/issues/spaces.976324-08.patch";
+
 ; This version works with php 5.3
 projects[vertical_tabs][subdir] = "contrib"
 projects[vertical_tabs][type] = "module"

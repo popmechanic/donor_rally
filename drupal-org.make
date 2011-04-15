@@ -79,9 +79,6 @@ projects[shorten][version] = "1.9"
 projects[shorturl][subdir] = "contrib"
 projects[shorturl][version] = "1.2"
 
-projects[spaces][subdir] = "contrib"
-projects[spaces][version] = "3.1"
-
 projects[strongarm][subdir] = "contrib"
 projects[strongarm][version] = "2.0"
 
