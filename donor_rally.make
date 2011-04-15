@@ -23,8 +23,8 @@ projects[service_links][version] = "2.0"
 
 projects[spaces][subdir] = "contrib"
 projects[spaces][version] = "3.1"
-; http://drupal.org/node/976324
-project[spaces][patch][] = "http://drupal.org/files/issues/spaces.976324-08.patch";
+; http://drupal.org/node/976324#comment-4354134
+projects[spaces][patch][] = "http://drupal.org/files/issues/spaces.976324-08.patch"
 
 ; This version works with php 5.3
 projects[vertical_tabs][subdir] = "contrib"
