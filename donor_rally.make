@@ -58,7 +58,7 @@ projects[doune][download][url] = "git://github.com/opensourcery/doune.git"
 projects[huddle][type] = "theme"
 projects[huddle][download][type] = "git"
 projects[huddle][download][url] = "git://github.com/opensourcery/huddle.git"
-projects[huddle][download][tag] = "DRUPAL-6--1-0-ALPHA1"
+projects[huddle][download][branch] = "6.x-2.x"
 
 ; Libraries
 libraries[jquery_ui][download][type] = "get"
