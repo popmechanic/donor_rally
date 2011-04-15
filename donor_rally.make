@@ -38,8 +38,8 @@ projects[simple_payments][subdir] = "contrib"
 projects[simple_payments][type] = "module"
 projects[simple_payments][download][type] = "git"
 projects[simple_payments][download][revision] = "575c67774a78ea5ce67cdad1a0c39bb6b22ed050"
-; http://drupal.org/node/869142#comment-3267326
-projects[simple_payments][patch][] = "http://drupal.org/files/issues/simple_payments-869142-views-support.patch"
+; http://drupal.org/node/869142#comment-4320162
+projects[simple_payments][patch][] = "http://drupal.org/files/issues/simple_payments-869142-13.patch"
 
 projects[views][subdir] = "contrib"
 projects[views][version] = "2.11"
@@ -65,4 +65,3 @@ libraries[jquery_ui][download][type] = "get"
 libraries[jquery_ui][download][url] = "http://jquery-ui.googlecode.com/files/jquery.ui-1.6.zip"
 libraries[jquery_ui][directory_name] = "jquery.ui"
 libraries[jquery_ui][destination] = "modules/contrib/jquery_ui"
-
