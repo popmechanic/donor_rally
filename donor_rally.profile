@@ -379,6 +379,7 @@ function  _donor_rally_modules() {
     'content_profile',
     'content_profile_registration',
     'context',
+    'context_ui',
     'dr_base',
     'fieldgroup',
     'filefield',
