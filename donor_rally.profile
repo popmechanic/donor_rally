@@ -396,6 +396,7 @@ function  _donor_rally_modules() {
     'og_access',
     'purl',
     'spaces',
+    'spaces_dashboard',
     'spaces_og',
     'text',
     'views_bonus_export',
