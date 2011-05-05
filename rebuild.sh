@@ -31,7 +31,7 @@ if [ -f donor_rally.make ]; then
 MAKE=$(cat <<EOF
 core = "6.x"\n
 api = 2\n
-projects[drupal][version] = "6.19"\n
+projects[drupal][version] = "6.20"\n
 projects[donor_rally][type] = "profile"\n
 projects[donor_rally][download][type] = "git"\n
 projects[donor_rally][download][url] = "git://github.com/opensourcery/donor_rally.git"\n
