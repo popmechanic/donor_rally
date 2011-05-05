@@ -20,7 +20,7 @@ if [ -f donor_rally.make ]; then
 
     # Run donor_rally.make only.
     echo "Building Donor Rally install profile..."
-    rm -Rf modules/contrib modules/development themes/ libraries/
+    rm -Rf modules/ themes/ libraries/
     drush -y make --working-copy --no-core --contrib-destination=. donor_rally.make
 
   elif [ $SELECTION = "2" ]; then
