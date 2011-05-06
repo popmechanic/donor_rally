@@ -13,6 +13,11 @@ projects[donor_rally_features][download][type] = "git"
 projects[donor_rally_features][download][branch] = "6.x-2.x"
 
 ; Contrib
+projects[contextual][subdir] = "contrib"
+projects[contextual][type] = "module"
+; Fixes the edit view issue if views_ui not enabled.
+projects[contextual][download][revision] = "2247f61"
+
 projects[salsa_api][subdir] = "contrib"
 projects[salsa_api][type] = "module"
 projects[salsa_api][download][type] = "git"
