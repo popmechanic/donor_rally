@@ -25,7 +25,8 @@ projects[spaces][download][branch] = "7.x-1.x"
 ; http://drupal.org/node/976324#comment-4354134
 ; TODO reroll for 7.x
 ; projects[spaces][patch][] = "http://drupal.org/files/issues/spaces.976324-08.patch"
-
+; http://drupal.org/node/1157154#comment-4467380
+projects[spaces][patch][] = "http://drupal.org/files/issues/spaces.1157154-01.patch"
 
 projects[views][subdir] = "contrib"
 projects[views][version] = "3.0-beta3"
