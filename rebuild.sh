@@ -29,13 +29,10 @@ if [ -f donor_rally.make ]; then
     echo "Building Donor Rally distribution..."
 
 MAKE=$(cat <<EOF
-core = "6.x"\n
+core = "7.x"\n
 api = 2\n
-projects[drupal][version] = "6.20"\n
+projects[drupal][version] = "7.0"\n
 projects[donor_rally][type] = "profile"\n
-projects[donor_rally][download][type] = "git"\n
-projects[donor_rally][download][url] = "git://github.com/opensourcery/donor_rally.git"\n
-projects[donor_rally][download][tag] = "DRUPAL-6--1-0-ALPHA1"
 EOF
 )
     
