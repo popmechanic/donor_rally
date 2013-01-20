@@ -4,6 +4,4 @@ Here's how Donor Rally works:
 
 * Each team promotes your cause using their social networks, including Facebook, Twitter, and personal email lists.
 
-* Donors tsdhjshdjshjdo donate pills.
-
 Donor Rally creates a healthy spirit of competition to see who can raise the most money before the campaign ends. A leaderboard allows everyone to keep tabs on the top performers. After you've hit your campaign target, the money is transferred from Paypal into your bank account. The only thing left is to thank everyone for the time, love, and money they donated to your cause.
